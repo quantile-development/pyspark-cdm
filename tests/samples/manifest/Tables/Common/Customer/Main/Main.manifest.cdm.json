@@ -1,0 +1,43 @@
+{
+    "manifestName": "Main",
+    "entities": [
+        {
+            "type": "LocalEntity",
+            "entityName": "CustTable",
+            "entityPath": "CustTable.cdm.json/CustTable",
+            "dataPartitionPatterns": [
+                {
+                    "name": "CustTable-data-description",
+                    "rootLocation": "CustTable",
+                    "globPattern": "/*.csv",
+                    "regularExpression": "",
+                    "exhibitsTraits": [
+                        {
+                            "traitReference": "is.partition.format.CSV",
+                            "arguments": [
+                                {
+                                    "name": "columnHeaders",
+                                    "value": "false"
+                                },
+                                {
+                                    "name": "delimiter",
+                                    "value": ","
+                                },
+                                {
+                                    "name": "escape",
+                                    "value": "\""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "jsonSchemaSemanticVersion": "1.4.0",
+    "imports": [
+        {
+            "corpusPath": "cdm:/foundations.cdm.json"
+        }
+    ]
+}

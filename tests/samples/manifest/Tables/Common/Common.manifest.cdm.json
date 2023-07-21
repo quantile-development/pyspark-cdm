@@ -1,0 +1,10 @@
+{
+    "manifestName": "Common",
+    "subManifests": [
+        {
+            "manifestName": "Customer",
+            "definition": "Customer/Customer.manifest.cdm.json"
+        }
+    ],
+    "jsonSchemaSemanticVersion": "1.4.0"
+}

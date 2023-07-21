@@ -1,0 +1,13 @@
+{
+    "partitions": [
+        {
+            "partitionId": "CUSTTABLE_00001.csv",
+            "startRecId": -999999999999999999,
+            "endRecId": 0,
+            "completed": true,
+            "blockRanges": []
+        }
+    ],
+    "recordsPerBlock": 0,
+    "entityKey": "e257a40d-9109-44b1-923b-4c62d5294c57"
+}
