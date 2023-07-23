@@ -1090,37 +1090,37 @@
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWBILLINGCOMMUNICATIONMETHOD",
+                    "name": "BILLINGCOMMUNICATIONMETHOD",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWMETERINGCOMMUNICATIONMETHOD",
+                    "name": "METERINGCOMMUNICATIONMETHOD",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWDEBTASSISTANCE",
+                    "name": "DEBTASSISTANCE",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWPROVIDECLOSINGDATA",
+                    "name": "PROVIDECLOSINGDATA",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWSMSINFORMATION",
+                    "name": "SMSINFORMATION",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWSENDFULLINVOICEDETAILS",
+                    "name": "SENDFULLINVOICEDETAILS",
                     "purpose": "hasA",
                     "dataFormat": "Int64"
                 },
                 {
-                    "name": "BRWCHAMBEROFCOMMERCE",
+                    "name": "CHAMBEROFCOMMERCE",
                     "purpose": "hasA",
                     "dataFormat": "String"
                 },

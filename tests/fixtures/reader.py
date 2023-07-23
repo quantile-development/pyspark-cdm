@@ -1,12 +1,8 @@
 import pytest
-import tests
+from tests.consts import MANIFEST_SAMPLE_PATH
 from pyspark_cdm import CdmReader
 from pyspark.sql import SparkSession
 from pathlib import Path
-
-SAMPLES_PATH = Path(tests.__file__).parent / "samples"
-MANIFEST_SAMPLE_PATH = SAMPLES_PATH / "manifest"
-MODEL_SAMPLE_PATH = SAMPLES_PATH / "model"
 
 
 @pytest.fixture

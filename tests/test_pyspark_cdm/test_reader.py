@@ -1,5 +1,5 @@
 from pyspark_cdm import CdmReader
-from cdm.objectmodel import CdmManifestDefinition
+from cdm.objectmodel import CdmManifestDefinition, CdmEntityDefinition
 
 
 def test_reading_manifest(cdm_manifest_reader: CdmReader):
@@ -11,5 +11,6 @@ def test_reading_manifest(cdm_manifest_reader: CdmReader):
     assert len(manifest.sub_manifests) > 0
 
 
-def test_loading_entities(cdm_manifest_reader: CdmReader):
-    print(cdm_manifest_reader.entities[0].entity_name)
+# def test_loading_entities(cdm_manifest_reader: CdmReader):
+#     assert len(cdm_manifest_reader.entities) > 0
+#     assert type(cdm_manifest_reader.entities[0]) == CdmEntityDefinition

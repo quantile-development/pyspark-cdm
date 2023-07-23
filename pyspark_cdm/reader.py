@@ -53,10 +53,10 @@ class CdmReader:
         manifest = loop.run_until_complete(task)
         return manifest
 
-    def get_entities_and_sub_manifests(
+    def get_entity_declarations_and_sub_manifests(
         self,
         manifest: CdmManifestDefinition,
-    ) -> Tuple[List[CdmEntityDefinition], List[CdmManifestDefinition]]:
+    ) -> Tuple[List[CdmLocalEntityDeclarationDefinition], List[CdmManifestDefinition]]:
         entities = []
         sub_manifests = []
 
@@ -78,7 +78,7 @@ class CdmReader:
             (
                 sub_manifest_entities,
                 sub_manifest_sub_manifests,
-            ) = self.get_entities_and_sub_manifests(sub_manifest)
+            ) = self.get_entity_declarations_and_sub_manifests(sub_manifest)
 
             # Add the entities and sub manifests to the list
             entities += sub_manifest_entities
@@ -87,7 +87,28 @@ class CdmReader:
         return entities, sub_manifests
 
     @cached_property
-    def entities(self) -> List[CdmEntityDefinition]:
+    def entity_declarations(self) -> List[CdmLocalEntityDeclarationDefinition]:
         start_manifest = self.get_manifest_from_path(self.start_manifest)
-        entities, _ = self.get_entities_and_sub_manifests(start_manifest)
-        return entities
+        # entity_declaration_definitions = self.get_entity_declarations_and_sub_manifests(
+        #     start_manifest
+        # )[0]
+
+        # return entity_declaration_definitions
+
+    @cached_property
+    def entities(self) -> List[CdmEntityDefinition]:
+        entities = []
+
+        for entity_declaration in self.entity_declarations:
+            for data_partition in entity_declaration.data_partition_patterns:
+                print(data_partition.location)
+                # entity = self.get_manifest_from_path(
+                #     data_partition.location.replace("cdm:", "")
+                # )
+                # entities.append(entity)
+        #     entity = self.get_manifest_from_path(
+        #         entity_declaration.entity_path
+        #     )
+        #     entities.append(entity)
+
+        # return entities

@@ -1,0 +1,1186 @@
+{
+    "jsonSchemaSemanticVersion": "1.1.0",
+    "imports": [
+        {
+            "corpusPath": "cdm:/foundations.cdm.json"
+        }
+    ],
+    "definitions": [
+        {
+            "entityName": "EmptyTable",
+            "hasAttributes": [
+                {
+                    "name": "_SysRowId",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "LSN",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "LastProcessedChange_DateTime",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "DataLakeModified_DateTime",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "RECID",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "PAYMTERMID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "LINEDISC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "TAXWITHHOLDGROUP_TH",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PARTYCOUNTRY",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ACCOUNTNUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ACCOUNTSTATEMENT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "AFFILIATED_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "AGENCYLOCATIONCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BANKACCOUNT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BANKCENTRALBANKPURPOSECODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BANKCENTRALBANKPURPOSETEXT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BANKCUSTPAYMIDTABLE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "BIRTHCOUNTYCODE_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BIRTHPLACE_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "BLOCKED",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CASHDISC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CASHDISCBASEDAYS",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CCMNUM_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CLEARINGPERIOD",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CNAE_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CNPJCPFNUM_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMMERCIALREGISTER",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMMERCIALREGISTERINSETNUMBER",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMMERCIALREGISTERSECTION",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMMISSIONGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMPANYCHAINID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMPANYIDSIRET",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "COMPANYNAFCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "COMPANYTYPE_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CONSDAY_JP",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CONTACTPERSONID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDITCARDADDRESSVERIFICATION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDITCARDADDRESSVERIFICATIONLEVEL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDITCARDADDRESSVERIFICATIONVOID",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDITCARDCVC",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDITMAX",
+                    "purpose": "hasA",
+                    "dataFormat": "Decimal"
+                },
+                {
+                    "name": "CREDITRATING",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CURP_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CURRENCY",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CUSTCLASSIFICATIONID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CUSTEXCLUDECOLLECTIONFEE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CUSTEXCLUDEINTERESTCHARGES",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CUSTFINALUSER_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CUSTGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CUSTITEMGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CUSTTRADINGPARTNERCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CUSTWHTCONTRIBUTIONTYPE_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "DEFAULTDIMENSION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "DEFAULTDIRECTDEBITMANDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "DEFAULTINVENTSTATUSID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "DESTINATIONCODEID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "DLVMODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "DLVREASON",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "DLVTERM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "EINVOICE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "EINVOICEATTACHMENT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "EINVOICEEANNUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ENDDISC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ENTRYCERTIFICATEREQUIRED_W",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "EXPORTSALES_PL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "EXPRESSBILLOFLADING",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FACTORINGACCOUNT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "FEDERALCOMMENTS",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "FEDNONFEDINDICATOR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FINECODE_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "FISCALCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "FISCALDOCTYPE_PL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FORECASTDMPINCLUDE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FOREIGNRESIDENT_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FREIGHTZONE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "GENERATEINCOMINGFISCALDOCUMENT_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPEACCOUNTSTATEMENT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPECOLLECTIONLETTER",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPEFREETEXTINVOICE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPEINTERESTNOTE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "GIROTYPEPROJINVOICE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ICMSCONTRIBUTOR_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "IDENTIFICATIONNUMBER",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "IENUM_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INCLTAX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INSSCEI_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INTBANK_LV",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INTERCOMPANYALLOWINDIRECTCREATION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INTERCOMPANYAUTOCREATEORDERS",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INTERCOMPANYDIRECTDELIVERY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INTERESTCODE_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INVENTLOCATION",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INVENTPROFILEID_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INVENTPROFILETYPE_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INVENTSITEID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INVOICEACCOUNT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "INVOICEADDRESS",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INVOICEPOSTINGTYPE_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "IRS1099CINDICATOR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ISRESIDENT_LV",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ISSUEOWNENTRYCERTIFICATE_W",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ISSUERCOUNTRY_HU",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "LINEOFBUSINESSID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "LVPAYMTRANSCODES",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MAINCONTACTWORKER",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MANDATORYCREDITLIMIT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MANDATORYVATDATE_PL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MARKUPGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "MCRMERGEDPARENT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "MCRMERGEDROOT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "MULTILINEDISC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "NIT_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "NUMBERSEQUENCEGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ONETIMECUSTOMER",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ORDERENTRYDEADLINEGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "ORGID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "OURACCOUNTNUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PACKAGEDEPOSITEXCEMPT_PL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "PACKMATERIALFEELICENSENUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PARTY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "PARTYSTATE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PASSPORTNO_HU",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMDAYID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMENTREFERENCE_EE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMIDTYPE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMMODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMSCHED",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PAYMSPEC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PDSCUSTREBATEGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PDSFREIGHTACCRUED",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "PDSREBATETMAGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PRICEGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "RESIDENCEFOREIGNCOUNTRYREGIONID_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "RFC_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "RFIDCASETAGGING",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "RFIDITEMTAGGING",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "RFIDPALLETTAGGING",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SALESCALENDARID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SALESDISTRICTID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SALESGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SALESPOOLID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SEGMENTID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SERVICECODEONDLVADDRESS_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SHIPCARRIERACCOUNT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SHIPCARRIERACCOUNTCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SHIPCARRIERBLINDSHIPMENT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SHIPCARRIERFUELSURCHARGE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SHIPCARRIERID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "STATEINSCRIPTION_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "STATISTICSGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SUBSEGMENTID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SUFRAMA_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SUFRAMANUMBER_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SUFRAMAPISCOFINS_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SUPPITEMGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "TAXGROUP",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "TAXLICENSENUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "TAXPERIODPAYMENTCODE_PL",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "TAXWITHHOLDCALCULATE_IN",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "TAXWITHHOLDCALCULATE_TH",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "UNITEDVATINVOICE_LT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "USECASHDISC",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "USEPURCHREQUEST",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "VATNUM",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "VENDACCOUNT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "WEBSALESORDERDISPLAY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "AUTHORITYOFFICE_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "EINVOICEREGISTER_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FOREIGNERID_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PRESENCETYPE_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "TAXGSTRELIEFGROUPHEADING_MY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FOREIGNTAXREGISTRATION_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CUSTWRITEOFFREFRECID",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ISEXTERNALLYMAINTAINED",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SATPAYMMETHOD_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SATPURPOSE_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CFDIENABLED_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FOREIGNTRADE_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "WORKFLOWSTATE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "USEORIGINALDOCUMENTASFACTURE_RU",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "COLLECTIONLETTERCODE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "BLOCKFLOORLIMITUSEINCHANNEL",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CFDISKIPIEPSTAXES_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SIMPLIFYTAXINTGREXPORTDOCVALIDATION_CN",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "REVRECDISABLEINTERCOMPANY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "DATAAREAID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PARTITION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "RECVERSION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MODIFIEDDATETIME",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "MODIFIEDBY",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREATEDDATETIME",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "SIMPLENATIONAL_BR",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "FREENOTESGROUP_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "USUALEXPORTER_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDMANELIGIBLECREDITLIMITDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDMANEXCLUDE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDMANACCOUNTSTATUSID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDMANELIGIBLECREDITMAX",
+                    "purpose": "hasA",
+                    "dataFormat": "Decimal"
+                },
+                {
+                    "name": "CREDMANBUSINESSSTARTED",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANTITLEHELD",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDMANCUSTCREDITMAXALT",
+                    "purpose": "hasA",
+                    "dataFormat": "Decimal"
+                },
+                {
+                    "name": "CREDMANELIGIBLECREDITLIMITCURRENCY",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDMANCUSTOMERSINCE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANWITHAGENCY",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CREDMANSTATUSREASONID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDMANCOLLECTIONGROUPID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CREDMANCREDITLIMITEXPIRYDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANCREDITLIMITDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANLASTREVIEWDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANNEXTSCHEDREVIEWDATE",
+                    "purpose": "hasA",
+                    "dataFormat": "DateTime"
+                },
+                {
+                    "name": "CREDMANCUSTUNLIMITEDCREDIT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "MCSREMARKCAMPAGNE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "MCSREMARKSPECIFIC",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "MCSCOMMUNICATIONMETHOD",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "BILLINGCOMMUNICATIONMETHOD",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "METERINGCOMMUNICATIONMETHOD",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "DEBTASSISTANCE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "PROVIDECLOSINGDATA",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SMSINFORMATION",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SENDFULLINVOICEDETAILS",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "CHAMBEROFCOMMERCE",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "PRINTDYNAMICQRCODE_IN",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "ISPUBLICSECTOR_IT",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "VATNUMRECID",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "VATNUMTABLETYPE",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SIMPLIFYTAXINTGREXPORTTAXREGVALIDATION_CN",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "INVOICETYPE_W",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "OVERRIDESALESTAX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "TAXREGIMECODE_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "CFDITEMPORARYEXPORT_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "Int64"
+                },
+                {
+                    "name": "SATREGISTRATIONNAME_MX",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                },
+                {
+                    "name": "SYSSHARINGDATAAREAID",
+                    "purpose": "hasA",
+                    "dataFormat": "String"
+                }
+            ],
+            "displayName": "CustTable"
+        }
+    ]
+}
