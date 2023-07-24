@@ -88,3 +88,17 @@ def cdm_data_type_to_spark(
     }
 
     return type_mapping[cdm_data_type]
+
+
+def remove_root_from_path(path: str, root: str) -> str:
+    """
+    Remove the root from the path.
+
+    Args:
+        path (str): Path to remove the root from.
+        root (str): Root to remove from the path.
+
+    Returns:
+        str: Path without the root.
+    """
+    return f"/{path.lstrip(root)}"

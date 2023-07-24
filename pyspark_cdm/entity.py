@@ -8,7 +8,11 @@ from cdm.objectmodel import (
     CdmLocalEntityDeclarationDefinition,
     CdmManifestDefinition,
 )
-from pyspark_cdm.utils import get_document_from_path, cdm_data_type_to_spark
+from pyspark_cdm.utils import (
+    get_document_from_path,
+    cdm_data_type_to_spark,
+    remove_root_from_path,
+)
 from pyspark.sql.types import StructField, StructType
 from pyspark.sql import DataFrame
 
@@ -75,7 +79,7 @@ class Entity:
         """
         for file_pattern in self.file_patterns:
             for file_path in glob(file_pattern):
-                yield file_path
+                yield remove_root_from_path(file_path, "/dbfs")
 
     @property
     def schema(self) -> StructType:
