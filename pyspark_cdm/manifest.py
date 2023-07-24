@@ -44,18 +44,6 @@ class Manifest:
                     manifest=sub_manifest,
                     declaration=entity,
                 )
-        # print(self.document.folder.at_corpus_path)
-        # for entity in self.document.entities:
-        #     print(entity.entity_path)
-        # return [
-        #     Entity(
-        #         corpus=self.corpus,
-        #         manifest=self,
-        #         declaration=entity,
-        #         # path=self.document.folder.at_corpus_path + entity.entity_path,
-        #     )
-        #     for entity in self.document.entities
-        # ]
 
     @property
     def sub_manifests(self) -> Generator["Manifest", None, None]:
