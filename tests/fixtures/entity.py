@@ -9,4 +9,4 @@ def entity(corpus: CdmCorpusDefinition):
         corpus=corpus,
         path="cdm:/Tables/Common/Customer/Main/Main.manifest.cdm.json",
     )
-    return manifest.entities[0]
+    return list(manifest.entities)[0]

@@ -1,4 +1,4 @@
-from pyspark_cdm import Manifest
+from pyspark_cdm import Manifest, Entity
 from cdm.objectmodel import CdmEntityDefinition, CdmManifestDefinition
 
 
@@ -31,7 +31,10 @@ def test_entities_from_manifest(manifest: Manifest):
     Make sure that the entities property correctly returns a list of Entities.
     And that there are at least 1 entity.
     """
-    manifest_with_entities = list(manifest.sub_manifests)[2]
+    # manifest_with_entities = list(manifest.sub_manifests)[2]
 
-    assert len(manifest_with_entities.entities) >= 1
-    assert type(manifest_with_entities.entities[0].document) == CdmEntityDefinition
+    # assert len(manifest_with_entities.entities) >= 1
+    # assert type(manifest_with_entities.entities[0].document) == CdmEntityDefinition
+
+    assert len(list(manifest.entities)) >= 1
+    assert type(next(manifest.entities)) == Entity

@@ -1,4 +1,5 @@
 from functools import cached_property
+from re import sub
 from typing import Generator, List, Optional
 from pyspark_cdm.entity import Entity
 from pyspark_cdm.utils import get_document_from_path
@@ -22,25 +23,39 @@ class Manifest:
         )
 
     @property
-    def entities(self) -> List[Entity]:
+    def entities(self) -> Generator[Entity, None, None]:
         """
         A list of entities in the current manifest.
 
         Returns:
             List[Entity]: A list of entities.
         """
-        # print(self.document.folder.at_corpus_path)
-        # for entity in self.document.entities:
-        #     print(entity.entity_path)
-        return [
-            Entity(
+        for entity in self.document.entities:
+            yield Entity(
                 corpus=self.corpus,
                 manifest=self,
                 declaration=entity,
-                # path=self.document.folder.at_corpus_path + entity.entity_path,
             )
-            for entity in self.document.entities
-        ]
+
+        for sub_manifest in self.sub_manifests:
+            for entity in sub_manifest.entities:
+                yield Entity(
+                    corpus=self.corpus,
+                    manifest=sub_manifest,
+                    declaration=entity,
+                )
+        # print(self.document.folder.at_corpus_path)
+        # for entity in self.document.entities:
+        #     print(entity.entity_path)
+        # return [
+        #     Entity(
+        #         corpus=self.corpus,
+        #         manifest=self,
+        #         declaration=entity,
+        #         # path=self.document.folder.at_corpus_path + entity.entity_path,
+        #     )
+        #     for entity in self.document.entities
+        # ]
 
     @property
     def sub_manifests(self) -> Generator["Manifest", None, None]:
