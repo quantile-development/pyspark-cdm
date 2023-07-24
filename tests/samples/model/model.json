@@ -1,0 +1,104 @@
+{
+    "name": "cdm",
+    "description": "cdm",
+    "version": "1.0",
+    "entities": [
+        {
+            "$type": "LocalEntity",
+            "name": "example",
+            "description": "example",
+            "annotations": [
+                {
+                    "name": "Athena:PartitionGranularity",
+                    "value": "Month"
+                },
+                {
+                    "name": "Athena:InitialSyncState",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Athena:InitialSyncDataCompletedTime",
+                    "value": "6/12/2023 12:03:11 PM"
+                }
+            ],
+            "attributes": [
+                {
+                    "name": "Id",
+                    "dataType": "guid",
+                    "maxLength": -1
+                },
+                {
+                    "name": "SinkCreatedOn",
+                    "dataType": "dateTime",
+                    "maxLength": -1
+                },
+                {
+                    "name": "SinkModifiedOn",
+                    "dataType": "dateTime",
+                    "maxLength": -1
+                },
+                {
+                    "name": "systemuserid",
+                    "dataType": "guid",
+                    "maxLength": -1
+                },
+                {
+                    "name": "teamid",
+                    "dataType": "guid",
+                    "maxLength": -1
+                },
+                {
+                    "name": "teammembershipid",
+                    "dataType": "guid",
+                    "maxLength": -1
+                },
+                {
+                    "name": "versionnumber",
+                    "dataType": "int64",
+                    "maxLength": -1
+                },
+                {
+                    "name": "IsDelete",
+                    "dataType": "boolean",
+                    "maxLength": -1
+                },
+                {
+                    "name": "CreatedOn",
+                    "dataType": "dateTimeOffset",
+                    "maxLength": -1
+                }
+            ],
+            "partitions": [
+                {
+                    "name": "1",
+                    "location": "https://xyz.dfs.core.windows.net:443/dataverse/example/Snapshot/1_1690183552.csv",
+                    "cdm:traits": [
+                        {
+                            "traitReference": "is.partition.format.CSV",
+                            "arguments": [
+                                {
+                                    "name": "raggedRight",
+                                    "value": "true"
+                                }
+                            ]
+                        }
+                    ],
+                    "fileFormatSettings": {
+                        "$type": "CsvFormatSettings",
+                        "columnHeaders": false,
+                        "delimiter": ",",
+                        "quoteStyle": "QuoteStyle.Csv",
+                        "csvStyle": "CsvStyle.QuoteAlways",
+                        "encoding": "UTF-8"
+                    },
+                    "annotations": [
+                        {
+                            "name": "Athena:PartitionYear",
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
