@@ -9,6 +9,7 @@ packages = [{include = "pyspark_cdm"}]
 [tool.poetry.dependencies]
 python = "<4.0,>=3.8"
 commondatamodel-objectmodel = "^1.7.3"
+nest-asyncio = "^1.5.6"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"

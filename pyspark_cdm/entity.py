@@ -25,6 +25,16 @@ class Entity:
         self.declaration = declaration
 
     @property
+    def name(self) -> str:
+        """
+        The name of the entity.
+
+        Returns:
+            str: The name of the entity.
+        """
+        return self.document.entity_name
+
+    @property
     def path(self) -> str:
         """
         The path to the entity file.

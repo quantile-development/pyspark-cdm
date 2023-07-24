@@ -32,6 +32,38 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "LocalEntity",
+            "entityName": "EmptyTable",
+            "entityPath": "EmptyTable.cdm.json/EmptyTable",
+            "dataPartitionPatterns": [
+                {
+                    "name": "EmptyTable-data-description",
+                    "rootLocation": "EmptyTable",
+                    "globPattern": "/*.csv",
+                    "regularExpression": "",
+                    "exhibitsTraits": [
+                        {
+                            "traitReference": "is.partition.format.CSV",
+                            "arguments": [
+                                {
+                                    "name": "columnHeaders",
+                                    "value": "false"
+                                },
+                                {
+                                    "name": "delimiter",
+                                    "value": ","
+                                },
+                                {
+                                    "name": "escape",
+                                    "value": "\""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "jsonSchemaSemanticVersion": "1.4.0",

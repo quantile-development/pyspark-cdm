@@ -13,6 +13,13 @@ def test_entity_document(entity: Entity):
     assert type(entity.document) == CdmEntityDefinition
 
 
+def test_entity_name(entity: Entity):
+    """
+    Make sure that the name property correctly returns the name of the entity.
+    """
+    assert entity.name == "CustTable"
+
+
 def test_file_patterns(entity: Entity):
     """
     Make sure that the file_patterns property correctly returns a list of file patterns.

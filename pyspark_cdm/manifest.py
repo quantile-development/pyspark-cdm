@@ -38,7 +38,7 @@ class Manifest:
             )
 
         for sub_manifest in self.sub_manifests:
-            for entity in sub_manifest.entities:
+            for entity in sub_manifest.document.entities:
                 yield Entity(
                     corpus=self.corpus,
                     manifest=sub_manifest,
