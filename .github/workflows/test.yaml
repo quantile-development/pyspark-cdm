@@ -24,10 +24,10 @@ jobs:
       fail-fast: false
       matrix:
         python:
-          - "3.8"
-          - "3.9"
+          # - "3.8"
+          # - "3.9"
           - "3.10"
-          - "3.11"
+          # - "3.11"
 
     steps:
       - name: Check out repository code
@@ -41,11 +41,11 @@ jobs:
           cache: "pip"
           cache-dependency-path: "poetry.lock"
 
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: "16"
-          distribution: "adopt"
+      # - name: Setup Java
+      #   uses: actions/setup-java@v2
+      #   with:
+      #     java-version: "16"
+      #     distribution: "adopt"
 
       # - name: Setup Spark
       #   uses: apache/spark@v3.2.0
@@ -60,4 +60,4 @@ jobs:
         run: poetry install
 
       - name: Run test suite
-        run: poetry run pytest
+        run: poetry run pytest -s

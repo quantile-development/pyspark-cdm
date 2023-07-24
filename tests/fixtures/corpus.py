@@ -10,5 +10,6 @@ from tests.consts import MANIFEST_SAMPLE_PATH
 def corpus():
     corpus = CdmCorpusDefinition()
     corpus.set_event_callback(event_callback, CdmStatusLevel.ERROR)
+    print(f"Mounting manifest path: {MANIFEST_SAMPLE_PATH}")
     corpus.storage.mount("cdm", LocalAdapter(root=str(MANIFEST_SAMPLE_PATH)))
     return corpus
