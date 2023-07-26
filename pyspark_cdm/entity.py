@@ -141,5 +141,5 @@ class Entity:
             schema=self.schema,
             inferSchema=False,
             multiLine=True,
-            escape="'",
+            escape='"',
         )
