@@ -135,11 +135,11 @@ class Entity:
         return catalog.schema
 
     def get_dataframe(self, spark) -> DataFrame:
-        print(self.file_paths)
         return spark.read.csv(
             list(self.file_paths),
             header=False,
             schema=self.schema,
             inferSchema=False,
+            multiLine=True,
             escape="'",
         )
