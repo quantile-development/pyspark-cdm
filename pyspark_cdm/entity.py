@@ -1,6 +1,8 @@
 from ast import Str
+import asyncio
 from glob import glob
 from functools import cached_property
+from os import replace
 from typing import Generator, List
 from cdm.objectmodel import (
     CdmCorpusDefinition,
@@ -8,11 +10,16 @@ from cdm.objectmodel import (
     CdmLocalEntityDeclarationDefinition,
     CdmManifestDefinition,
 )
+from cdm.persistence import PersistenceLayer
+from cdm.persistence.modeljson.types.local_entity import LocalEntity
+from pyspark_cdm.catalog import catalog_factory
 from pyspark_cdm.utils import (
     get_document_from_path,
-    cdm_data_type_to_spark,
     remove_root_from_path,
 )
+from cdm.utilities.copy_options import CopyOptions
+from cdm.utilities.resolve_options import ResolveOptions
+from cdm.persistence.modeljson import LocalEntityDeclarationPersistence
 from pyspark.sql.types import StructField, StructType
 from pyspark.sql import DataFrame
 
@@ -56,6 +63,35 @@ class Entity:
         )
 
     @property
+    def is_model(self) -> bool:
+        """
+        Whether the entity is a model or a manifest.
+
+        Returns:
+            bool: Whether the entity is a model or a manifest.
+        """
+        return self.manifest.document.at_corpus_path.endswith(
+            PersistenceLayer.MODEL_JSON_EXTENSION
+        )
+
+    @cached_property
+    def data(self) -> LocalEntity:
+        """
+        Get the raw underlying data of the entity.
+        """
+        loop = asyncio.get_event_loop()
+        task = loop.create_task(
+            LocalEntityDeclarationPersistence.to_data(
+                self.declaration,
+                self.manifest.document,
+                ResolveOptions(),
+                CopyOptions(),
+            )
+        )
+        data = loop.run_until_complete(task)
+        return data
+
+    @property
     def file_patterns(self) -> Generator[str, None, None]:
         """
         A list of file patterns that contain the data for the current entity.
@@ -81,6 +117,12 @@ class Entity:
             for file_path in glob(file_pattern):
                 yield remove_root_from_path(file_path, "/dbfs")
 
+        for partition in self.declaration.data_partitions:
+            location = partition.location
+            location = location.replace("adls:", "local:")
+            path = self.corpus.storage.corpus_path_to_adapter_path(location)
+            yield remove_root_from_path(path, "/dbfs")
+
     @property
     def schema(self) -> StructType:
         """
@@ -89,17 +131,11 @@ class Entity:
         Returns:
             str: The schema of the entity.
         """
-        return StructType(
-            [
-                StructField(
-                    attribute.name,
-                    cdm_data_type_to_spark(attribute.data_format),
-                )
-                for attribute in self.document.attributes
-            ]
-        )
+        catalog = catalog_factory(self)
+        return catalog.schema
 
     def get_dataframe(self, spark) -> DataFrame:
+        print(self.file_paths)
         return spark.read.csv(
             list(self.file_paths),
             header=False,

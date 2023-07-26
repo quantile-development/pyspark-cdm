@@ -1,9 +1,8 @@
 import warnings
 from tests.fixtures.spark import spark
-from tests.fixtures.reader import cdm_manifest_reader
-from tests.fixtures.manifest import manifest
-from tests.fixtures.corpus import corpus
-from tests.fixtures.entity import entity
+from tests.fixtures.manifest import manifest, model
+from tests.fixtures.corpus import manifest_corpus, model_corpus
+from tests.fixtures.entity import manifest_entity, model_entity
 
 warnings.filterwarnings("ignore", module="cdm")
 warnings.simplefilter("ignore", category=DeprecationWarning)
