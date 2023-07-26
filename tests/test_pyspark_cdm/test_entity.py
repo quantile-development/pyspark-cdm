@@ -7,6 +7,14 @@ from pyspark.sql.types import StructType
 from pyspark.sql import DataFrame
 
 
+def test_entity_name(entity: Entity):
+    """
+    Make sure that the name property correctly returns the name of the entity.
+    """
+    assert type(entity.name) == str
+    assert len(entity.name) > 0
+
+
 def test_entity_is_model(entity: Entity):
     """
     Make sure that the is_model property correctly returns False.

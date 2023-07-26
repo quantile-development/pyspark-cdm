@@ -43,7 +43,7 @@ class Entity:
         Returns:
             str: The name of the entity.
         """
-        return self.document.entity_name
+        return self.declaration.entity_name
 
     @property
     def path(self) -> str:
