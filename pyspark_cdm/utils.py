@@ -10,6 +10,19 @@ from cdm.objectmodel import (
 from pyspark_cdm.exceptions import DocumentLoadingException
 
 
+def get_or_create_eventloop() -> asyncio.AbstractEventLoop:
+    """
+    Get or create an event loop, this is to make it work in a multi-threaded environment.
+    """
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+
+
 def event_callback(
     status_level: CdmStatusLevel,
     message: str,
@@ -38,7 +51,7 @@ def get_document_from_path(
     Returns:
         Optional[CdmObject]: Content of the document, can be any CDM object.
     """
-    loop = asyncio.get_event_loop()
+    loop = get_or_create_eventloop()
     task = loop.create_task(corpus.fetch_object_async(path))
     manifest = loop.run_until_complete(task)
 

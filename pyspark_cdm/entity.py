@@ -15,6 +15,7 @@ from cdm.persistence.modeljson.types.local_entity import LocalEntity
 from pyspark_cdm.catalog import catalog_factory
 from pyspark_cdm.utils import (
     get_document_from_path,
+    get_or_create_eventloop,
     remove_root_from_path,
 )
 from cdm.utilities.copy_options import CopyOptions
@@ -79,7 +80,7 @@ class Entity:
         """
         Get the raw underlying data of the entity.
         """
-        loop = asyncio.get_event_loop()
+        loop = get_or_create_eventloop()
         task = loop.create_task(
             LocalEntityDeclarationPersistence.to_data(
                 self.declaration,
