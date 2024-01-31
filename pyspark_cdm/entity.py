@@ -23,6 +23,7 @@ from cdm.utilities.resolve_options import ResolveOptions
 from cdm.persistence.modeljson import LocalEntityDeclarationPersistence
 from pyspark.sql.types import StructField, StructType
 from pyspark.sql import DataFrame
+from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 
 class Entity:
@@ -135,6 +136,7 @@ class Entity:
         catalog = catalog_factory(self)
         return catalog.schema
 
+    @retry(stop=stop_after_attempt(2), wait=wait_random_exponential(multiplier=3, max=60))
     def get_dataframe(self, spark) -> DataFrame:
         return spark.read.csv(
             list(self.file_paths),
