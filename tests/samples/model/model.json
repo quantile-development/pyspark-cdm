@@ -66,6 +66,16 @@
                     "name": "CreatedOn",
                     "dataType": "dateTimeOffset",
                     "maxLength": -1
+                },
+                {
+                    "name": "RandomDateTime",
+                    "dataType": "dateTime",
+                    "maxLength": -1
+                },
+                {
+                    "name": "RandomDateTime2",
+                    "dataType": "dateTime",
+                    "maxLength": -1
                 }
             ],
             "partitions": [
