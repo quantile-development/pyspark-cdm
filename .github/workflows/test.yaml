@@ -1,20 +1,12 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - xyz
-#     paths:
-#       - ".github/workflows/test.yaml"
-#       - "pyspark_cdm/**"
-#       - "tests/**"
-#       - "poetry.lock"
-#   pull_request:
-#     paths:
-#       - ".github/workflows/test.yaml"
-#       - "pyspark_cdm/**"
-#       - "tests/**"
-#       - "poetry.lock"
+  pull_request:
+    paths:
+      - ".github/workflows/test.yaml"
+      - "pyspark_cdm/**"
+      - "tests/**"
+      - "poetry.lock"
 
 jobs:
   test:
