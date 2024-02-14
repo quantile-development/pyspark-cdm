@@ -25,9 +25,11 @@ from pyspark.sql.types import StructField, StructType
 from pyspark.sql import DataFrame
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 
+
 def log_attempt_number(retry_state):
     """Print a message after retrying."""
     print(f"Retrying: {retry_state.attempt_number}...")
+
 
 class Entity:
     def __init__(
@@ -140,15 +142,19 @@ class Entity:
         return catalog.schema
 
     @retry(
-            stop=stop_after_attempt(2), 
-            wait=wait_random_exponential(multiplier=3, max=60),
-            after=log_attempt_number,
-        )
-    def get_dataframe(self, spark) -> DataFrame:
+        stop=stop_after_attempt(2),
+        wait=wait_random_exponential(multiplier=3, max=60),
+        after=log_attempt_number,
+    )
+    def get_dataframe(
+        self,
+        spark,
+        alter_schema=lambda schema: schema,
+    ) -> DataFrame:
         return spark.read.csv(
             list(self.file_paths),
             header=False,
-            schema=self.schema,
+            schema=alter_schema(self.schema),
             inferSchema=False,
             multiLine=True,
             escape='"',

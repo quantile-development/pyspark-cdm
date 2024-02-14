@@ -2,8 +2,8 @@ from cdm.objectmodel import CdmEntityDefinition
 from cdm.persistence.modeljson.types.local_entity import LocalEntity
 import pytest
 from pyspark_cdm import Entity
-from tests.consts import MANIFEST_SAMPLE_PATH, MODEL_SAMPLE_PATH
-from pyspark.sql.types import StructType
+from tests.consts import MANIFEST_SAMPLE_PATH
+import pyspark.sql.types as T
 from pyspark.sql import DataFrame
 
 
@@ -65,7 +65,7 @@ def test_entity_schema(entity: Entity):
     """
     Make sure that the schema property correctly returns a StructType.
     """
-    assert type(entity.schema) == StructType
+    assert type(entity.schema) == T.StructType
 
 
 def test_entity_dataframe(entity: Entity, spark):
@@ -75,3 +75,15 @@ def test_entity_dataframe(entity: Entity, spark):
     df = entity.get_dataframe(spark=spark)
     assert type(df) == DataFrame
     assert df.count() == 3
+
+
+def test_entity_alter_schema(entity: Entity, spark):
+    """
+    Make sure that the alter_schema parameter correctly alters the schema of the dataframe.
+    """
+
+    def alter_schema(schema):
+        return T.StructType([T.StructField("_id", T.StringType()), *schema[1:]])
+
+    df = entity.get_dataframe(spark=spark, alter_schema=alter_schema)
+    assert df.columns[0] == "_id"
