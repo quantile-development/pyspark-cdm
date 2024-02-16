@@ -26,6 +26,7 @@ class DatetimeParser:
         an exception.
         """
         for pyspark_format, regex in DATE_FORMATS.items():
+            print(f'Detecting {date_string} with {regex} ({pyspark_format}).')
             if re.match(regex, date_string):
                 return pyspark_format
 
