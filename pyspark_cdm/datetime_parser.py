@@ -26,7 +26,11 @@ class DatetimeParser:
         an exception.
         """
         for pyspark_format, regex in DATE_FORMATS.items():
-            print(f'Detecting {date_string} with {regex} ({pyspark_format}).')
+            # The regex match fails if the provided date_string is a none value, therefore,
+            # we return none once we stumble upon a none value.
+            if date_string == None:
+               return None
+
             if re.match(regex, date_string):
                 return pyspark_format
 
