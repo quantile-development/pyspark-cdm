@@ -10,6 +10,7 @@ DATE_FORMATS = {
     "M/d/yyyy h:mm:ss a": r"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}:\d{2} [AP]M",
     "yyyy-MM-dd'T'HH:mm:ss.SSS": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}",
     "yyyy-MM-dd'T'HH:mm:ss'Z'": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z",
+    "yyyy-MM-dd'T'HH:mm:ss": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}",
     "dd-MM-yyyy HH:mm:ss": r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}",
     "dd-MM-yyyy": r"\d{2}-\d{2}-\d{4}",
 }
