@@ -1,10 +1,12 @@
 import asyncio
-from typing import Optional
+from typing import Optional, List
 from cdm.enums import CdmStatusLevel, CdmDataFormat
 from cdm.objectmodel import (
     CdmCorpusDefinition,
     CdmObject,
 )
+from pyspark.sql import DataFrame, Row
+import pyspark.sql.functions as F
 
 
 from pyspark_cdm.exceptions import DocumentLoadingException
@@ -73,3 +75,20 @@ def remove_root_from_path(path: str, root: str) -> str:
         str: Path without the root.
     """
     return f"/{path.lstrip(root)}"
+
+def first_non_empty_values(
+    df: DataFrame,
+    selected_columns: List[str]
+) -> Row:
+    """
+    Returns for each given column the first non empty value.
+    """
+    row = df.select(
+        [
+            F.first(column, ignorenulls=True).alias(column) 
+            for column 
+            in selected_columns
+        ]
+    ).first()
+
+    return row

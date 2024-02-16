@@ -76,6 +76,21 @@
                     "name": "RandomDateTime2",
                     "dataType": "dateTime",
                     "maxLength": -1
+                },
+                {
+                    "name": "RandomDateTime3",
+                    "dataType": "dateTime",
+                    "maxLength": -1
+                },
+                {
+                    "name": "RandomDateTime4",
+                    "dataType": "dateTime",
+                    "maxLength": -1
+                },
+                {
+                    "name": "RandomDateTime5",
+                    "dataType": "dateTime",
+                    "maxLength": -1
                 }
             ],
             "partitions": [

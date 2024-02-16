@@ -21,8 +21,9 @@ from pyspark_cdm.utils import (
 from cdm.utilities.copy_options import CopyOptions
 from cdm.utilities.resolve_options import ResolveOptions
 from cdm.persistence.modeljson import LocalEntityDeclarationPersistence
-from pyspark.sql.types import StructField, StructType
+from pyspark.sql.types import StructType
 from pyspark.sql import DataFrame
+from pyspark_cdm.datetime_parser import DatetimeParser
 
 
 class Entity:
@@ -125,7 +126,7 @@ class Entity:
             yield remove_root_from_path(path, "/dbfs")
 
     @property
-    def schema(self) -> StructType:
+    def catalog(self) -> StructType:
         """
         The schema of the entity.
 
@@ -133,14 +134,35 @@ class Entity:
             str: The schema of the entity.
         """
         catalog = catalog_factory(self)
-        return catalog.schema
+        return catalog
 
-    def get_dataframe(self, spark) -> DataFrame:
-        return spark.read.csv(
-            list(self.file_paths),
-            header=False,
-            schema=self.schema,
-            inferSchema=False,
-            multiLine=True,
-            escape='"',
-        )
+    def get_dataframe(self, spark, detect: bool = False) -> DataFrame:
+
+        if detect:
+            spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
+            schema_with_replaced_timestamp_types = self.catalog.overwrite_timestamp_types(self.catalog.schema)
+
+            df = spark.read.csv(
+                list(self.file_paths),
+                header=False,
+                schema=schema_with_replaced_timestamp_types,
+                inferSchema=False,
+                multiLine=True,
+                escape='"',
+            )
+
+            datetime_parser = DatetimeParser(df, self.catalog)
+            parsed_df = datetime_parser.convert_datetime_columns()
+
+            return parsed_df
+
+        else:
+
+            return spark.read.csv(
+                list(self.file_paths),
+                header=False,
+                schema=self.catalog.schema,
+                inferSchema=False,
+                multiLine=True,
+                escape='"',
+            )
