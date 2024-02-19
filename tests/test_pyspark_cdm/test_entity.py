@@ -1,8 +1,8 @@
 from cdm.objectmodel import CdmEntityDefinition
 from cdm.persistence.modeljson.types.local_entity import LocalEntity
 from pyspark_cdm import Entity
-from tests.consts import MANIFEST_SAMPLE_PATH, MODEL_SAMPLE_PATH
-from pyspark.sql.types import StructType, TimestampType, DateType
+from tests.consts import MANIFEST_SAMPLE_PATH
+import pyspark.sql.types as T
 from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 import pytest
@@ -66,7 +66,7 @@ def test_entity_schema(entity: Entity):
     """
     Make sure that the schema property correctly returns a StructType.
     """
-    assert type(entity.catalog.schema) == StructType
+    assert type(entity.catalog.schema) == T.StructType
 
 
 def test_entity_dataframe(entity: Entity, spark):
@@ -97,3 +97,15 @@ def test_entity_with_timestamp_parsing(entity: Entity, spark):
         assert df_parsed.filter(F.col("MODIFIEDDATETIME").isNotNull()).count() != 0
         assert df_parsed.filter(F.col("CREATEDDATETIME").isNotNull()).count() != 0
         assert df_parsed.filter(F.col("CREDMANELIGIBLECREDITLIMITDATE").isNotNull()).count() != 0
+        
+        
+def test_entity_alter_schema(entity: Entity, spark):
+    """
+    Make sure that the alter_schema parameter correctly alters the schema of the dataframe.
+    """
+
+    def alter_schema(schema):
+        return T.StructType([T.StructField("_id", T.StringType()), *schema[1:]])
+
+    df = entity.get_dataframe(spark=spark, alter_schema=alter_schema)
+    assert df.columns[0] == "_id"

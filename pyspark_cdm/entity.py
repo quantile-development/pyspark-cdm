@@ -24,6 +24,12 @@ from cdm.persistence.modeljson import LocalEntityDeclarationPersistence
 from pyspark.sql.types import StructType
 from pyspark.sql import DataFrame
 from pyspark_cdm.datetime_parser import DatetimeParser
+from tenacity import retry, stop_after_attempt, wait_random_exponential
+
+
+def log_attempt_number(retry_state):
+    """Print a message after retrying."""
+    print(f"Retrying: {retry_state.attempt_number}...")
 
 
 class Entity:
@@ -136,6 +142,12 @@ class Entity:
         catalog = catalog_factory(self)
         return catalog
 
+      
+    @retry(
+        stop=stop_after_attempt(2),
+        wait=wait_random_exponential(multiplier=3, max=60),
+        after=log_attempt_number,
+    )
     def get_dataframe(self, spark, infer_timestamp_formats: bool = False) -> DataFrame:
         """
         Loads the data using Spark.
