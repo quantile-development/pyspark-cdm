@@ -11,8 +11,10 @@ DATE_FORMATS = {
     "yyyy-MM-dd'T'HH:mm:ss.SSS": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}",
     "yyyy-MM-dd'T'HH:mm:ss'Z'": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z",
     "yyyy-MM-dd'T'HH:mm:ss": r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}",
-    "dd-MM-yyyy HH:mm:ss": r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}",
-    "dd-MM-yyyy": r"\d{2}-\d{2}-\d{4}",
+    "dd-MM-yyyy HH:mm:ss": r"\d{2}-(0[1-9]|1[0-2])-\d{4} \d{2}:\d{2}:\d{2}",
+    "dd-MM-yyyy": r"\d{2}-(0[1-9]|1[0-2])-\d{4}",
+    "MM-dd-yyyy HH:mm:ss": r"(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])-\d{4} \d{2}:\d{2}:\d{2}",
+    "MM-dd-yyyy": r"(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])-\d{4}",
 }
 
 class DatetimeParser:
@@ -49,7 +51,6 @@ class DatetimeParser:
         """
         try:
           df = df.withColumn(column_name, to_timestamp(col(column_name), datetime_format))
-          # print(f'Succesfully parsed {column_name} with {datetime_format}')
           return df
 
         except:
