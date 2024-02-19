@@ -137,7 +137,8 @@ class Entity:
         return catalog
 
     def get_dataframe(self, spark, infer_timestamp_formats: bool = False) -> DataFrame:
-        """_summary_
+        """
+        Loads the data using Spark.
 
         Args:
             spark: spark session.
