@@ -81,7 +81,9 @@ def first_non_empty_values(
     selected_columns: List[str]
 ) -> Row:
     """
-    Returns for each given column the first non empty value.
+    Returns for each given column the first non empty value. Be aware that
+    once a column is full with nulls, it returns a None for that given
+    column.
     """
     row = df.select(
         [
