@@ -136,9 +136,20 @@ class Entity:
         catalog = catalog_factory(self)
         return catalog
 
-    def get_dataframe(self, spark, detect: bool = False) -> DataFrame:
+    def get_dataframe(self, spark, infer_timestamp_formats: bool = False) -> DataFrame:
+        """_summary_
 
-        if detect:
+        Args:
+            spark: spark session.
+            infer_timestamp_formats (bool, optional): Whether we should infer the timestamp
+            formats using regex. Defaults to False.
+
+        Returns:
+            DataFrame: Spark dataframe with the loaded data.
+        """
+
+
+        if infer_timestamp_formats:
             spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
             schema_with_replaced_timestamp_types = self.catalog.overwrite_timestamp_types(self.catalog.schema)
 

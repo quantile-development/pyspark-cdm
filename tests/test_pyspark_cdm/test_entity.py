@@ -83,7 +83,7 @@ def test_entity_with_timestamp_parsing(entity: Entity, spark):
     """
     Ensure that the timestamp parsing goes correctly.
     """
-    df_parsed = entity.get_dataframe(spark=spark, detect=True)
+    df_parsed = entity.get_dataframe(spark=spark, infer_timestamp_formats=True)
 
     if entity.is_model:
         assert df_parsed.filter(F.col("SinkCreatedOn").isNotNull()).count() != 0
