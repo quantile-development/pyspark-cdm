@@ -148,7 +148,12 @@ class Entity:
         wait=wait_random_exponential(multiplier=3, max=60),
         after=log_attempt_number,
     )
-    def get_dataframe(self, spark, infer_timestamp_formats: bool = False) -> DataFrame:
+    def get_dataframe(
+        self, 
+        spark,
+        infer_timestamp_formats: bool = False,
+        alter_schema=lambda schema: schema,
+    ) -> DataFrame:
         """
         Loads the data using Spark.
 
@@ -156,6 +161,7 @@ class Entity:
             spark: spark session.
             infer_timestamp_formats (bool, optional): Whether we should infer the timestamp
             formats using regex. Defaults to False.
+            alter_schema: Alter the schema.
 
         Returns:
             DataFrame: Spark dataframe with the loaded data.
@@ -169,7 +175,7 @@ class Entity:
             df = spark.read.csv(
                 list(self.file_paths),
                 header=False,
-                schema=schema_with_replaced_timestamp_types,
+                schema=alter_schema(schema_with_replaced_timestamp_types),
                 inferSchema=False,
                 multiLine=True,
                 escape='"',
@@ -185,7 +191,7 @@ class Entity:
             return spark.read.csv(
                 list(self.file_paths),
                 header=False,
-                schema=self.catalog.schema,
+                schema=alter_schema(self.catalog.schema),
                 inferSchema=False,
                 multiLine=True,
                 escape='"',
