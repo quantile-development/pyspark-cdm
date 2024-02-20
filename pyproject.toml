@@ -4,11 +4,11 @@ version = "0.1.0"
 description = "Use pyspark to read CDM entities."
 authors = ["JulesHuisman <jules.huisman@quantile.nl>"]
 readme = "README.md"
-packages = [{include = "pyspark_cdm"}]
+packages = [{ include = "pyspark_cdm" }]
 
 [tool.poetry.dependencies]
 python = "<4.0,>=3.8"
-commondatamodel-objectmodel = "^1.7.3"
+commondatamodel-objectmodel = { git = "https://github.com/quantile-development/CDM.git", branch = "master", subdirectory = "objectModel/Python" }
 nest-asyncio = "^1.5.6"
 tenacity = "^8.2.3"
 
@@ -24,7 +24,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-filterwarnings = [
-    "error",
-    "ignore::DeprecationWarning",
-]
+filterwarnings = ["error", "ignore::DeprecationWarning"]
