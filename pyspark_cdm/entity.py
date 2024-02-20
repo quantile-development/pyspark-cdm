@@ -21,8 +21,9 @@ from pyspark_cdm.utils import (
 from cdm.utilities.copy_options import CopyOptions
 from cdm.utilities.resolve_options import ResolveOptions
 from cdm.persistence.modeljson import LocalEntityDeclarationPersistence
-from pyspark.sql.types import StructField, StructType
+from pyspark.sql.types import StructType
 from pyspark.sql import DataFrame
+from pyspark_cdm.datetime_parser import DatetimeParser
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 
@@ -131,7 +132,7 @@ class Entity:
             yield remove_root_from_path(path, "/dbfs")
 
     @property
-    def schema(self) -> StructType:
+    def catalog(self) -> StructType:
         """
         The schema of the entity.
 
@@ -139,23 +140,59 @@ class Entity:
             str: The schema of the entity.
         """
         catalog = catalog_factory(self)
-        return catalog.schema
+        return catalog
 
+      
     @retry(
         stop=stop_after_attempt(2),
         wait=wait_random_exponential(multiplier=3, max=60),
         after=log_attempt_number,
     )
     def get_dataframe(
-        self,
+        self, 
         spark,
+        infer_timestamp_formats: bool = False,
         alter_schema=lambda schema: schema,
     ) -> DataFrame:
-        return spark.read.csv(
-            list(self.file_paths),
-            header=False,
-            schema=alter_schema(self.schema),
-            inferSchema=False,
-            multiLine=True,
-            escape='"',
-        )
+        """
+        Loads the data using Spark.
+
+        Args:
+            spark: spark session.
+            infer_timestamp_formats (bool, optional): Whether we should infer the timestamp
+            formats using regex. Defaults to False.
+            alter_schema: Alter the schema.
+
+        Returns:
+            DataFrame: Spark dataframe with the loaded data.
+        """
+
+
+        if infer_timestamp_formats:
+            spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
+            schema_with_replaced_timestamp_types = self.catalog.overwrite_timestamp_types(self.catalog.schema)
+
+            df = spark.read.csv(
+                list(self.file_paths),
+                header=False,
+                schema=alter_schema(schema_with_replaced_timestamp_types),
+                inferSchema=False,
+                multiLine=True,
+                escape='"',
+            )
+
+            datetime_parser = DatetimeParser(df, self.catalog)
+            parsed_df = datetime_parser.convert_datetime_columns()
+
+            return parsed_df
+
+        else:
+
+            return spark.read.csv(
+                list(self.file_paths),
+                header=False,
+                schema=alter_schema(self.catalog.schema),
+                inferSchema=False,
+                multiLine=True,
+                escape='"',
+            )

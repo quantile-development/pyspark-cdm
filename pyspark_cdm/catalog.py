@@ -16,6 +16,7 @@ from pyspark.sql.types import (
     DecimalType,
 )
 
+TIMESTAMP_TYPES = [TimestampType(), DateType()]
 
 def catalog_factory(entity: "Entity") -> "Catalog":
     if entity.is_model:
@@ -35,6 +36,32 @@ class Catalog(ABC):
     @abstractproperty
     def schema(self) -> StructType:
         pass
+
+    @property
+    def timestamp_columns(self) -> list[str]:
+        """
+        Extract the columns that are parsed as timestamp or datetimes data types.
+        """
+        return [
+            entity.name
+            for entity
+            in self.schema
+            if entity.dataType in TIMESTAMP_TYPES
+        ]
+    
+    def overwrite_timestamp_types(self, schema: StructType) -> StructType:
+        """
+        Overwrite in the provided schema the timestamp date types to strings.
+        """
+        overwritten_date_types = list()
+
+        for entity in schema:
+            if entity.dataType in TIMESTAMP_TYPES:
+                entity.dataType = StringType()
+
+            overwritten_date_types.append(entity)
+
+        return StructType(overwritten_date_types)
 
 
 class ModelCatalog(Catalog):

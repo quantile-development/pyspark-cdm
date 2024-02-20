@@ -1,10 +1,11 @@
 from cdm.objectmodel import CdmEntityDefinition
 from cdm.persistence.modeljson.types.local_entity import LocalEntity
-import pytest
 from pyspark_cdm import Entity
 from tests.consts import MANIFEST_SAMPLE_PATH
 import pyspark.sql.types as T
 from pyspark.sql import DataFrame
+import pyspark.sql.functions as F
+import pytest
 
 
 def test_entity_name(entity: Entity):
@@ -65,7 +66,7 @@ def test_entity_schema(entity: Entity):
     """
     Make sure that the schema property correctly returns a StructType.
     """
-    assert type(entity.schema) == T.StructType
+    assert type(entity.catalog.schema) == T.StructType
 
 
 def test_entity_dataframe(entity: Entity, spark):
@@ -77,6 +78,27 @@ def test_entity_dataframe(entity: Entity, spark):
     assert df.count() == 3
 
 
+@pytest.mark.filterwarnings("ignore::pytest.PytestUnraisableExceptionWarning")
+def test_entity_with_timestamp_parsing(entity: Entity, spark):
+    """
+    Ensure that the timestamp parsing goes correctly.
+    """
+    df_parsed = entity.get_dataframe(spark=spark, infer_timestamp_formats=True)
+
+    if entity.is_model:
+        assert df_parsed.filter(F.col("SinkCreatedOn").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("SinkModifiedOn").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("CreatedOn").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("RandomDateTime3").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("RandomDateTime4").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("RandomDateTime5").isNotNull()).count() != 0
+
+    else:
+        assert df_parsed.filter(F.col("MODIFIEDDATETIME").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("CREATEDDATETIME").isNotNull()).count() != 0
+        assert df_parsed.filter(F.col("CREDMANELIGIBLECREDITLIMITDATE").isNotNull()).count() != 0
+        
+        
 def test_entity_alter_schema(entity: Entity, spark):
     """
     Make sure that the alter_schema parameter correctly alters the schema of the dataframe.
