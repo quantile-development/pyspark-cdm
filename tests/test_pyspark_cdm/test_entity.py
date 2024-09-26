@@ -96,9 +96,14 @@ def test_entity_with_timestamp_parsing(entity: Entity, spark):
     else:
         assert df_parsed.filter(F.col("MODIFIEDDATETIME").isNotNull()).count() != 0
         assert df_parsed.filter(F.col("CREATEDDATETIME").isNotNull()).count() != 0
-        assert df_parsed.filter(F.col("CREDMANELIGIBLECREDITLIMITDATE").isNotNull()).count() != 0
-        
-        
+        assert (
+            df_parsed.filter(
+                F.col("CREDMANELIGIBLECREDITLIMITDATE").isNotNull()
+            ).count()
+            != 0
+        )
+
+
 def test_entity_alter_schema(entity: Entity, spark):
     """
     Make sure that the alter_schema parameter correctly alters the schema of the dataframe.
@@ -109,3 +114,15 @@ def test_entity_alter_schema(entity: Entity, spark):
 
     df = entity.get_dataframe(spark=spark, alter_schema=alter_schema)
     assert df.columns[0] == "_id"
+
+
+def test_entity_load_kwargs(entity: Entity, spark):
+    """
+    Make sure that the load_kwargs parameter correctly loads the dataframe.
+    """
+    df = entity.get_dataframe(spark=spark, header=False)
+    assert df.count() == 3
+
+    # We are missing one row because the header is being read as data.
+    df = entity.get_dataframe(spark=spark, header=True)
+    assert df.count() == 2

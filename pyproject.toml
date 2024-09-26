@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyspark-cdm"
-version = "0.1.0"
+version = "0.1.1"
 description = "Use pyspark to read CDM entities."
 authors = ["JulesHuisman <jules.huisman@quantile.nl>"]
 readme = "README.md"
