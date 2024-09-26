@@ -152,7 +152,7 @@ class Entity:
         spark,
         infer_timestamp_formats: bool = False,
         alter_schema=lambda schema: schema,
-        load_kwargs: dict = {},
+        **load_kwargs,
     ) -> DataFrame:
         """
         Loads the data using Spark.
@@ -168,6 +168,18 @@ class Entity:
             DataFrame: Spark dataframe with the loaded data.
         """
 
+        default_load_kwargs = {
+            "header": False,
+            "inferSchema": False,
+            "multiLine": True,
+            "escape": '"',
+        }
+
+        load_kwargs = {
+            **default_load_kwargs,
+            **load_kwargs,
+        }
+
         if infer_timestamp_formats:
             spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
             schema_with_replaced_timestamp_types = (
@@ -176,11 +188,7 @@ class Entity:
 
             df = spark.read.csv(
                 list(self.file_paths),
-                header=False,
                 schema=alter_schema(schema_with_replaced_timestamp_types),
-                inferSchema=False,
-                multiLine=True,
-                escape='"',
                 **load_kwargs,
             )
 
@@ -193,10 +201,6 @@ class Entity:
 
             return spark.read.csv(
                 list(self.file_paths),
-                header=False,
                 schema=alter_schema(self.catalog.schema),
-                inferSchema=False,
-                multiLine=True,
-                escape='"',
                 **load_kwargs,
             )
