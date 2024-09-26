@@ -142,17 +142,17 @@ class Entity:
         catalog = catalog_factory(self)
         return catalog
 
-      
     @retry(
         stop=stop_after_attempt(2),
         wait=wait_random_exponential(multiplier=3, max=60),
         after=log_attempt_number,
     )
     def get_dataframe(
-        self, 
+        self,
         spark,
         infer_timestamp_formats: bool = False,
         alter_schema=lambda schema: schema,
+        load_kwargs: dict = {},
     ) -> DataFrame:
         """
         Loads the data using Spark.
@@ -162,15 +162,17 @@ class Entity:
             infer_timestamp_formats (bool, optional): Whether we should infer the timestamp
             formats using regex. Defaults to False.
             alter_schema: Alter the schema.
+            load_kwargs: Additional arguments to pass to the load method.
 
         Returns:
             DataFrame: Spark dataframe with the loaded data.
         """
 
-
         if infer_timestamp_formats:
             spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
-            schema_with_replaced_timestamp_types = self.catalog.overwrite_timestamp_types(self.catalog.schema)
+            schema_with_replaced_timestamp_types = (
+                self.catalog.overwrite_timestamp_types(self.catalog.schema)
+            )
 
             df = spark.read.csv(
                 list(self.file_paths),
@@ -179,6 +181,7 @@ class Entity:
                 inferSchema=False,
                 multiLine=True,
                 escape='"',
+                **load_kwargs,
             )
 
             datetime_parser = DatetimeParser(df, self.catalog)
@@ -195,4 +198,5 @@ class Entity:
                 inferSchema=False,
                 multiLine=True,
                 escape='"',
+                **load_kwargs,
             )
